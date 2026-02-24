@@ -1,7 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Profi26" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
+        <item name="android:windowBackground">@color/dark</item>
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    </style>
+
+    <style name="Theme.Splash" parent="Base.Theme.Profi26">
+        <item name="android:windowBackground">@color/deep_blue</item>
     </style>
 </resources>
