@@ -10,4 +10,6 @@
     <string name="the_lessons_you_need_to_learn">The lessons you need to learn</string>
     <string name="using_a">Using a variety of learning styles to learn\nand retain</string>
     <string name="choose_a_language">Choose a language</string>
+    <string name="check_again">Check again</string>
+    <string name="no_internet_connection">No\ninternet connection</string>
 </resources>
