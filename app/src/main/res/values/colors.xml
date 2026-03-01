@@ -15,4 +15,9 @@
     <color name="dark_light">#1B2336</color>
     <color name="dark_lighter">#363B44</color>
     <color name="green_blue">#00B5AE</color>
+
+    <color name="dark20">#33080E1E</color>
+    <color name="white20">#33FFFFFF</color>
+    <color name="black60">#99080E1E</color>
+    <color name="white60">#99FFFFFF</color>
 </resources>

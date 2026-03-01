@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Profi26</string>
+    <string name="skip_onboarding">Skip onboarding</string>
+    <string name="next">Next</string>
+    <string name="confidence_in_your_words">Confidence in your words</string>
+    <string name="with_conversation">With conversation-based learning,\nyou\'ll be talking from lesson one</string>
+    <string name="take_your_time_to_learn">Take your time to learn</string>
+    <string name="make_it">Develop a habit of learning and\nmake it a part of your daily routine</string>
+    <string name="more">More</string>
+    <string name="the_lessons_you_need_to_learn">The lessons you need to learn</string>
+    <string name="using_a">Using a variety of learning styles to learn\nand retain</string>
+    <string name="choose_a_language">Choose a language</string>
 </resources>
