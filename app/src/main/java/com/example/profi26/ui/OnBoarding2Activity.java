@@ -11,8 +11,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.profi26.R;
+import com.example.profi26.model.SharedManger;
 
 public class OnBoarding2Activity extends AppCompatActivity {
+    private SharedManger manager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,9 @@ public class OnBoarding2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_on_boarding2);
+
+        manager = SharedManger.getInstance(this);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -29,6 +35,8 @@ public class OnBoarding2Activity extends AppCompatActivity {
     }
 
     public void changeActivity(View view) {
+        manager.checkedOnBoarding2();
+
         Intent onBoarding2 = new Intent(OnBoarding2Activity.this, OnBoarding3Activity.class);
         startActivity(onBoarding2);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

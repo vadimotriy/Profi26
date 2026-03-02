@@ -2,6 +2,7 @@ package com.example.profi26.ui;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,14 +15,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.profi26.R;
+import com.example.profi26.model.SharedManger;
 import com.google.android.material.button.MaterialButton;
 
 public class LanguageSelectActivity extends AppCompatActivity {
     MaterialButton buttonRussian, buttonEnglish, buttonChinese, buttonBelarus, buttonKazakh, lastChecked;
+    SharedManger manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Base_Theme_Profi26);
+
+        manager = SharedManger.getInstance(this);
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -41,6 +46,8 @@ public class LanguageSelectActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MaterialButton clickedButton = (MaterialButton) v;
 
+                manager.setLanguage(clickedButton.getText().toString());
+
                 if (lastChecked != null) {
                     lastChecked.setEnabled(true);
                 }
@@ -56,6 +63,21 @@ public class LanguageSelectActivity extends AppCompatActivity {
         buttonBelarus.setOnClickListener(toggleChecked);
         buttonKazakh.setOnClickListener(toggleChecked);
 
+        switch (manager.getLanguage()) {
+            case "Russian":
+                buttonRussian.setEnabled(false); lastChecked = buttonRussian; break;
+            case "English":
+                buttonEnglish.setEnabled(false); lastChecked = buttonEnglish; break;
+            case "Chinese":
+                buttonChinese.setEnabled(false); lastChecked = buttonChinese; break;
+            case "Belarus":
+                buttonBelarus.setEnabled(false); lastChecked = buttonBelarus; break;
+            case "Kazakh":
+                buttonKazakh.setEnabled(false); lastChecked = buttonKazakh; break;
+            default:
+                buttonRussian.setEnabled(false); lastChecked = buttonRussian;
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -64,20 +86,6 @@ public class LanguageSelectActivity extends AppCompatActivity {
     }
 
     public void chooseLanguage(View view) {
-    }
 
-    public void languageRussia(View view) {
-    }
-
-    public void languageEnglish(View view) {
-    }
-
-    public void languageChinese(View view) {
-    }
-
-    public void languageBelarus(View view) {
-    }
-
-    public void languageKazakh(View view) {
     }
 }

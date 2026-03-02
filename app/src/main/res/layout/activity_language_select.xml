@@ -56,7 +56,6 @@
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/language_selector"
         android:fontFamily="@font/fredoka_medium"
-        android:onClick="languageRussia"
 
         android:padding="20dp"
         android:text="@string/language_russian"
@@ -79,7 +78,6 @@
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/language_selector"
         android:fontFamily="@font/fredoka_medium"
-        android:onClick="languageEnglish"
 
         android:padding="20dp"
         android:text="@string/language_english"
@@ -102,7 +100,6 @@
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/language_selector"
         android:fontFamily="@font/fredoka_medium"
-        android:onClick="languageChinese"
 
         android:padding="20dp"
         android:text="@string/language_chinese"
@@ -125,7 +122,6 @@
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/language_selector"
         android:fontFamily="@font/fredoka_medium"
-        android:onClick="languageBelarus"
 
         android:padding="20dp"
         android:text="@string/language_belarus"
@@ -148,7 +144,6 @@
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/language_selector"
         android:fontFamily="@font/fredoka_medium"
-        android:onClick="languageKazakh"
 
         android:padding="20dp"
         android:text="@string/language_kazakh"

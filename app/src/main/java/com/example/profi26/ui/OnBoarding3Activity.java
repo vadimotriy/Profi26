@@ -11,12 +11,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.profi26.R;
+import com.example.profi26.model.SharedManger;
 
 public class OnBoarding3Activity extends AppCompatActivity {
+    SharedManger manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Base_Theme_Profi26);
+
+        manager = SharedManger.getInstance(this);
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -29,6 +33,8 @@ public class OnBoarding3Activity extends AppCompatActivity {
     }
 
     public void changeActivity(View view) {
+        manager.checkedOnBoarding3();
+
         Intent languageSelect = new Intent(OnBoarding3Activity.this, LanguageSelectActivity.class);
         startActivity(languageSelect);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

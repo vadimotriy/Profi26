@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.profi26.R;
+import com.example.profi26.model.SharedManger;
 
 /* Класс OnBoarding1Activity
  * Назначение: окрытие активности activity_on_boarding1
@@ -21,6 +22,8 @@ import com.example.profi26.R;
  * Автор создания: Блинов Вадим
  */
 public class OnBoarding1Activity extends AppCompatActivity {
+    private SharedManger manager;
+
     /* Метод onCreate
      * Метод активируется при создании активности
      * Метод открывает саму активность, меняет тему и проверяет наличие интренета
@@ -31,6 +34,22 @@ public class OnBoarding1Activity extends AppCompatActivity {
 
         if (!isOnline()) {
             changeToNoInternet();
+        }
+
+        manager = SharedManger.getInstance(this);
+        if (manager.getOnBoarding1()) {
+            Intent activity;
+
+            if (manager.getOnBoarding2() && manager.getOnBoarding3()) {
+                activity = new Intent(OnBoarding1Activity.this, LanguageSelectActivity.class);
+            } else if (manager.getOnBoarding2()) {
+                activity = new Intent(OnBoarding1Activity.this, OnBoarding3Activity.class);
+            } else {
+                activity = new Intent(OnBoarding1Activity.this, OnBoarding2Activity.class);
+            }
+
+            startActivity(activity);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
         super.onCreate(savedInstanceState);
@@ -49,6 +68,8 @@ public class OnBoarding1Activity extends AppCompatActivity {
      * Метод служит для переход на активность activity_on_boarding2
      */
     public void changeActivity(View view) {
+        manager.checkedOnBoarding1();
+
         Intent onBoarding2 = new Intent(OnBoarding1Activity.this, OnBoarding2Activity.class);
         startActivity(onBoarding2);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
