@@ -12,4 +12,12 @@
     <string name="choose_a_language">Choose a language</string>
     <string name="check_again">Check again</string>
     <string name="no_internet_connection">No\ninternet connection</string>
+    <string name="language_select">Language select</string>
+    <string name="what_is_your">What is your Mother language?</string>
+    <string name="choose">Choose</string>
+    <string name="language_russian">Russian</string>
+    <string name="language_english">English</string>
+    <string name="language_chinese">Chinese</string>
+    <string name="language_belarus">Belarus</string>
+    <string name="language_kazakh">Kazakh</string>
 </resources>

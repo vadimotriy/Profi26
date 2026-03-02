@@ -64,6 +64,10 @@ public class OnBoarding1Activity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    /* Метод isOnline
+     * Метод активируется из метода onCreate
+     * Метод служит для проверки наличия интернета
+     */
     public boolean isOnline() {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = manager.getActiveNetworkInfo();
