@@ -2,10 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Profi26" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/dark</item>
+        <item name="android:windowSplashScreenBackground">@color/deep_blue</item>
         <item name="colorOnBackground">@color/dark</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="colorOnSecondary">@color/white60</item>
         <item name="colorOnSecondaryContainer">@color/white20</item>
+        <item name="colorOnPrimary">@color/white05</item>
+
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
 

@@ -1,5 +1,6 @@
 package com.example.profi26.ui;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -74,8 +75,6 @@ public class LanguageSelectActivity extends AppCompatActivity {
                 buttonBelarus.setEnabled(false); lastChecked = buttonBelarus; break;
             case "Kazakh":
                 buttonKazakh.setEnabled(false); lastChecked = buttonKazakh; break;
-            default:
-                buttonRussian.setEnabled(false); lastChecked = buttonRussian;
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -86,6 +85,8 @@ public class LanguageSelectActivity extends AppCompatActivity {
     }
 
     public void chooseLanguage(View view) {
-
+        Intent login = new Intent(LanguageSelectActivity.this, LgoinActivity.class);
+        startActivity(login);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }
