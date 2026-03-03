@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +15,22 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.profi26.R;
+import com.example.profi26.model.Api;
+
+import org.json.JSONObject;
+
+import java.util.Map;
+
+import okhttp3.ResponseBody;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import retrofit2.Call;
 
 public class MainScreenActivity extends AppCompatActivity {
+    TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +43,25 @@ public class MainScreenActivity extends AppCompatActivity {
             startActivity(noInternet);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
+
+        name = findViewById(R.id.main_name);
+
+        Retrofit r = new Retrofit.Builder().baseUrl("https://api-junior.matule.ru/api/")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+
+        r.create(Api.class).auth(Map.of("identity", "nymail@gmail.com", "password", "123456789"))
+                .enqueue(new Callback<>() {
+                    public void onResponse(Call<ResponseBody> c, Response<ResponseBody> res) {
+                        try {
+                            String firstname = new JSONObject(res.body().string())
+                                    .getJSONObject("record").getString("firstname");
+
+                            name.setText("Hello, " + firstname);
+
+                        } catch (Exception e) { e.printStackTrace(); }
+                    }
+                    public void onFailure(Call<ResponseBody> c, Throwable t) { t.printStackTrace(); }
+                });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

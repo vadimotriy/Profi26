@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
         manager = SharedManger.getInstance(this);
         button = findViewById(R.id.swicthTo);
 
-        if (manager.getNightTheme()) {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             button.setText("Switch to Light");
         }
 
@@ -41,7 +41,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void changeImage(View view) {
-
+        Intent activity = new Intent(ProfileActivity.this, PhotoActivity.class);
+        startActivity(activity);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void changeLanguage(View view) {
@@ -56,11 +58,9 @@ public class ProfileActivity extends AppCompatActivity {
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
             // Включаем светлую
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            manager.setNightTheme(false);
         } else {
             // Включаем темную
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            manager.setNightTheme(true);
         }
     }
 

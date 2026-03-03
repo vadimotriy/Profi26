@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.Profi26">
         <activity
+            android:name=".ui.PhotoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ProfileActivity"
             android:exported="false" />
         <activity
