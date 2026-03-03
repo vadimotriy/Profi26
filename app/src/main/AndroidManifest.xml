@@ -15,6 +15,30 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.Profi26">
         <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.GameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.wordpractiseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.GuessTheAnimalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AusitionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.LgoinActivity"
             android:exported="false" />
         <activity
@@ -31,13 +55,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.OnBoarding1Activity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

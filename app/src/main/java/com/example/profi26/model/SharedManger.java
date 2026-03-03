@@ -54,4 +54,12 @@ public class SharedManger {
         prefs.edit().putString("language", country).apply();
     }
 
+    public void setNightTheme(boolean state) {
+        prefs.edit().putBoolean("nightTheme", state).apply();
+    }
+
+    public boolean getNightTheme() {
+        return prefs.getBoolean("nightTheme", false);
+    }
+
 }

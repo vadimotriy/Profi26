@@ -40,8 +40,8 @@ public class NoInternetActivity extends AppCompatActivity {
 
     public void checkAgain(View view) {
         if (isOnline()) {
-            Intent onBoarding1 = new Intent(NoInternetActivity.this, OnBoarding1Activity.class);
-            startActivity(onBoarding1);
+            Intent mainScreen = new Intent(NoInternetActivity.this, MainScreenActivity.class);
+            startActivity(mainScreen);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
     }
