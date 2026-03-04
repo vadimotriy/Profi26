@@ -85,7 +85,7 @@ public class LanguageSelectActivity extends AppCompatActivity {
     }
 
     public void chooseLanguage(View view) {
-        Intent login = new Intent(LanguageSelectActivity.this, ProfileActivity.class);
+        Intent login = new Intent(LanguageSelectActivity.this, LgoinActivity.class);
         startActivity(login);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

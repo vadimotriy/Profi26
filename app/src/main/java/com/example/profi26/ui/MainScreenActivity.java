@@ -1,7 +1,9 @@
 package com.example.profi26.ui;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -10,7 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -32,6 +37,7 @@ import retrofit2.Call;
 
 public class MainScreenActivity extends AppCompatActivity {
     TextView name;
+    private boolean isMicOn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +75,6 @@ public class MainScreenActivity extends AppCompatActivity {
                     public void onFailure(Call<ResponseBody> c, Throwable t) { t.printStackTrace(); }
                 });
 
-        Api api = r.create(Api.class);
 
         r.create(Api.class).getWords()  // ваш метод API
                 .enqueue(new Callback<>() {
@@ -124,9 +129,32 @@ public class MainScreenActivity extends AppCompatActivity {
     }
 
     public void audition(View view) {
-        Intent activity = new Intent(MainScreenActivity.this, AusitionActivity.class);
-        startActivity(activity);
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.RECORD_AUDIO}, 100);
+        }
+
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            System.out.println(1);
+        } else {
+            Toast.makeText(this, "Нет разрешения", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Разрешение получено", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Разрешение отклонено", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void game(View view) {
