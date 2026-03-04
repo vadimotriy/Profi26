@@ -13,26 +13,32 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:background="@color/deep_blue"
-        android:orientation="vertical"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:gravity="center">
+        app:layout_constraintVertical_bias="0.0">
 
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/new_arrow" />
 
         <TextView
             android:id="@+id/main_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
+            android:layout_marginStart="24dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/fredoka_medium"
             android:text="Your photo is gorgeous!"
             android:textAlignment="textStart"
-            android:layout_marginStart="24dp"
 
             android:textColor="@color/white"
             android:textSize="28sp" />

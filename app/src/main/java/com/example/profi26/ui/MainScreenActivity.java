@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,11 +46,13 @@ public class MainScreenActivity extends AppCompatActivity {
         }
 
         name = findViewById(R.id.main_name);
+        String d;
+
 
         Retrofit r = new Retrofit.Builder().baseUrl("https://api-junior.matule.ru/api/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
-        r.create(Api.class).auth(Map.of("identity", "nymail@gmail.com", "password", "123456789"))
+        r.create(Api.class).auth(Map.of("identity", "nynail@gmail.com", "password", "123456789"))
                 .enqueue(new Callback<>() {
                     public void onResponse(Call<ResponseBody> c, Response<ResponseBody> res) {
                         try {
@@ -58,11 +61,43 @@ public class MainScreenActivity extends AppCompatActivity {
 
                             name.setText("Hello, " + firstname);
 
-                        } catch (Exception e) { e.printStackTrace(); }
+
+                        } catch (Exception e) {
+                            Toast.makeText(MainScreenActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     public void onFailure(Call<ResponseBody> c, Throwable t) { t.printStackTrace(); }
                 });
 
+        Api api = r.create(Api.class);
+
+        r.create(Api.class).getWords()  // ваш метод API
+                .enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        try {
+                            // 🔹 Парсим JSON вручную, как в вашем примере
+                            JSONObject json = new JSONObject(response.body().string());
+
+                            // 🔹 Получаем ПЕРВЫЙ элемент массива "items" и значение "ru"
+                            String russian = json
+                                    .getJSONArray("items")      // массив items
+                                    .getJSONObject(0)           // первый элемент [0]
+                                    .getString("ru");           // поле "ru" → "летать"
+
+                            // 🔹 Обновляем UI
+                            name.setText(russian);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
